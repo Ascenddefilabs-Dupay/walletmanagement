@@ -5,7 +5,7 @@ import ProgressBar from './ProgressBar';
 const WalletManager = () => {
 
   const handleCreateNewWallet = () => {
-    window.location.href = './CreatePassword';
+    window.location.href = './WalletSecretCode';
   };
 
   const handleExistingWallet = () => {
