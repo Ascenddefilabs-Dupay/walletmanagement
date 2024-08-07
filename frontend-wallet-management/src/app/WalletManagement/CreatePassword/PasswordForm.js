@@ -32,7 +32,7 @@ const PasswordForm = () => {
     };
 
     const handleLeftArrowClick = () => {
-        window.location.href = './WalletCreation';
+        window.location.href = './WalletSecretCode/success';
     };
 
     const handleVerifyPasswordChange = (e) => {
@@ -48,7 +48,9 @@ const PasswordForm = () => {
                 const response = await axios.post('http://127.0.0.1:8000/api/password/', { password });
                 setMessage('Password saved :)');
                 setMessageType('success');
-                window.location.href = 'http://localhost:3000/WalletManagement/WalletSubmit';
+                setTimeout(() => {
+                    window.location.href = 'http://localhost:3000/WalletManagement/WalletSubmit';
+                }, 2000);
             } catch (error) {
                 setMessage('Password not saved!');
                 setMessageType('error');
@@ -80,7 +82,7 @@ const PasswordForm = () => {
                         ←
                     </div>
                     <div className="column middle">
-                        <ProgressBar currentStep={1} totalSteps={4} />
+                        <ProgressBar currentStep={4} totalSteps={4} />
                     </div>
                     <div className="column right">
                         {/* Right column content */}

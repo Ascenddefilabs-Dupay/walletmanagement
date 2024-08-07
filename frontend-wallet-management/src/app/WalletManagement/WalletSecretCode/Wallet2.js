@@ -7,6 +7,7 @@ import { faEye, faEyeSlash, faCopy } from '@fortawesome/free-solid-svg-icons';
 import './style.css'; // Ensure this path is correct
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
+import ProgressBar from '../WalletCreation/ProgressBar';
 
 function Wallet2() {
   const [isTextVisible, setIsTextVisible] = useState(false);
@@ -62,11 +63,23 @@ function Wallet2() {
     }
   };
 
+  const handleLeftArrowClick = () => {
+    window.location.href = './WalletCreation';
+};
+
   return (
     <div className="wrapper">
-      <span className="back-arrow" onClick={() => window.history.back()}>
-        <FontAwesomeIcon icon={faArrowLeft} />
-      </span>
+      <div className="container">
+                    <div className="column left" onClick={handleLeftArrowClick}>
+                        ←
+                    </div>
+                    <div className="column middle">
+                        <ProgressBar currentStep={2} totalSteps={4} />
+                    </div>
+                    <div className="column right">
+                        {/* Right column content */}
+                    </div>
+                </div>
       <h1 className="header">Back up your wallet</h1>
       <p className="description">
         Save these 12 words to a password manager, or write down and store in a secure place.

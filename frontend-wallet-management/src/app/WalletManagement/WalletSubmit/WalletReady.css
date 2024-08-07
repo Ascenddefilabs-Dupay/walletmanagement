@@ -93,12 +93,21 @@
 }
 
 .card {
+  display:flex;
+  flex-direction: column;
+  text-align: center;
+  /* margin: 50px; */
+  font-size: 30px;
+  /* margin: 0 auto; */
   background-color: black;
   padding: 20px;
-  border-radius: 8px;
+  /* border-radius: 10px; */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 350px; 
+  width: 428px;
+  /* max-width: 428px; */
+  height: 100vh;
+  font-weight: bold;
+  font-family: "Segoe UI", "Roboto", "Helvetica", "Arial", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 .progress{
@@ -127,10 +136,15 @@
 
 .left{
   width: 20%;
-  background-color: black;
-  font-size: 30px;
-  cursor: pointer;
-  margin-right: 10px;
+    background-color: black;
+    font-weight: bold;
+    display: block;
+    justify-self: start;
+    text-align:start;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    font-size: 40px;
 }
 
 .middle {

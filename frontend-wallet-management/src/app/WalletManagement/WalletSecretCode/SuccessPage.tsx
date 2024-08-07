@@ -1,5 +1,5 @@
 'use client';
-
+import ProgressBar from '../WalletCreation/ProgressBar';
 import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
@@ -47,6 +47,10 @@ const SuccessPage: React.FC = () => {
         }
     };
 
+    const handleLeftArrowClick = () => {
+        window.location.href = '../WalletSecretCode';
+    };
+
     const handleSubmit = () => {
         if (firstSelectedIndex !== null && lastSelectedIndex !== null) {
             const firstWord = recoveryWords[firstSelectedIndex];
@@ -67,6 +71,7 @@ const SuccessPage: React.FC = () => {
 
             if (isCorrect) {
                 setIsSuccess(true);
+                window.location.href = '../CreatePassword';
             } else {
                 setIsSuccess(false);
             }
@@ -75,9 +80,17 @@ const SuccessPage: React.FC = () => {
 
     return (
         <div className="success-wrapper">
-            <span className="success-back-arrow" onClick={handleBackClick}>
-                <FontAwesomeIcon icon={faArrowLeft} />
-            </span>
+            <div className="container">
+                    <div className="column left" onClick={handleLeftArrowClick}>
+                        ←
+                    </div>
+                    <div className="column middle">
+                        <ProgressBar currentStep={3} totalSteps={4} />
+                    </div>
+                    <div className="column right">
+                        {/* Right column content */}
+                    </div>
+                </div>
             <div className="success-header">
                 You saved it, right?
             </div>
