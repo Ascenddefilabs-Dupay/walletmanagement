@@ -4,6 +4,7 @@ import './PasswordForm.css';
 import ProgressBar from '../WalletCreation/ProgressBar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { FaArrowLeft } from "react-icons/fa";
 
 const PasswordForm = () => {
     const [password, setPassword] = useState('');
@@ -32,7 +33,7 @@ const PasswordForm = () => {
     };
 
     const handleLeftArrowClick = () => {
-        window.location.href = './WalletSecretCode/success';
+        window.location.href = './WalletCreation';
     };
 
     const handleVerifyPasswordChange = (e) => {
@@ -79,7 +80,7 @@ const PasswordForm = () => {
             <div className="card">
                 <div className="container">
                     <div className="column left" onClick={handleLeftArrowClick}>
-                        ←
+                    <FaArrowLeft />
                     </div>
                     <div className="column middle">
                         <ProgressBar currentStep={4} totalSteps={4} />

@@ -295,6 +295,7 @@ body {
   justify-self: start;
   text-align:start;
   cursor: pointer;
+  margin-top: 10px;
   margin-right: 10px;
   margin-bottom: 10px;
   font-size: 30px;

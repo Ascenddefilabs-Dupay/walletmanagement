@@ -1,15 +1,18 @@
 import React from 'react';
 import './WalletManager.css';
 import ProgressBar from './ProgressBar';
+import { FaArrowLeft } from "react-icons/fa";
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 const WalletManager = () => {
 
   const handleCreateNewWallet = () => {
-    window.location.href = './WalletSecretCode';
+    window.location.href = './WalletCreation/AddAccount';
   };
 
   const handleExistingWallet = () => {
-    window.location.href = '/existing-wallet';
+    window.location.href = './WalletCreation/Account';
   };
 
   const handleLeftArrowClick = () => {
@@ -21,7 +24,7 @@ const WalletManager = () => {
       <div className='card'>
         <div className="container">
           <div className="column left" onClick={handleLeftArrowClick}>
-            ←
+          <FaArrowLeft />
           </div>
           <div className="column middle">
             <ProgressBar currentStep={1} totalSteps={4} />
