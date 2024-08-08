@@ -1,27 +1,35 @@
 'use client';
 import ProgressBar from '../WalletCreation/ProgressBar';
 import React, { useEffect, useState } from 'react';
+import { FaArrowLeft } from "react-icons/fa";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import './style.css';
+import axios from 'axios';
 
 const SuccessPage: React.FC = () => {
     const [recoveryWords, setRecoveryWords] = useState<string[]>([]);
+    const [shuffledWords, setShuffledWords] = useState<string[]>([]);
     const [selectedIndexes, setSelectedIndexes] = useState<number[]>([]);
     const [firstSelectedIndex, setFirstSelectedIndex] = useState<number | null>(null);
     const [lastSelectedIndex, setLastSelectedIndex] = useState<number | null>(null);
-    const [isSuccess, setIsSuccess] = useState<boolean | null>(null); // State to track success
+    const [isSuccess, setIsSuccess] = useState<boolean | null>(null);
 
     useEffect(() => {
         const words = localStorage.getItem('recoveryWords');
         if (words) {
             const wordArray = words.split(' ');
             setRecoveryWords(wordArray);
+            setShuffledWords(shuffleArray(wordArray));
         }
     }, []);
 
-    const handleBackClick = () => {
-        window.history.back();
+    const shuffleArray = (array: string[]) => {
+        const shuffled = array.slice();
+        for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        return shuffled;
     };
 
     const handleButtonClick = (index: number) => {
@@ -51,19 +59,13 @@ const SuccessPage: React.FC = () => {
         window.location.href = '../WalletSecretCode';
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         if (firstSelectedIndex !== null && lastSelectedIndex !== null) {
-            const firstWord = recoveryWords[firstSelectedIndex];
-            const lastWord = recoveryWords[lastSelectedIndex];
+            const firstWord = shuffledWords[firstSelectedIndex];
+            const lastWord = shuffledWords[lastSelectedIndex];
 
-            const expectedFirstWord = recoveryWords[0]; // Assuming the first word in the list is expected first
-            const expectedLastWord = recoveryWords[recoveryWords.length - 1]; // Assuming the last word in the list is expected last
-
-            console.log('Full recovery words:', recoveryWords);
-            console.log('Selected First Word:', firstWord);
-            console.log('Selected Last Word:', lastWord);
-            console.log('Expected First Word:', expectedFirstWord);
-            console.log('Expected Last Word:', expectedLastWord);
+            const expectedFirstWord = recoveryWords[0];
+            const expectedLastWord = recoveryWords[recoveryWords.length - 1];
 
             const isCorrect = 
                 firstWord.toLowerCase() === expectedFirstWord.toLowerCase() &&
@@ -71,7 +73,13 @@ const SuccessPage: React.FC = () => {
 
             if (isCorrect) {
                 setIsSuccess(true);
-                window.location.href = '../CreatePassword';
+                try {
+                    await axios.post('http://127.0.0.1:8000/api/recovery-phrase/', { phrase: recoveryWords.join(' ') });
+                    window.location.href = '../CreatePassword';
+                } catch (error) {
+                    console.error('Error saving phrase:', error);
+                    alert('Failed to save the recovery phrase.');
+                }
             } else {
                 setIsSuccess(false);
             }
@@ -81,16 +89,16 @@ const SuccessPage: React.FC = () => {
     return (
         <div className="success-wrapper">
             <div className="container">
-                    <div className="column left" onClick={handleLeftArrowClick}>
-                        ←
-                    </div>
-                    <div className="column middle">
-                        <ProgressBar currentStep={3} totalSteps={4} />
-                    </div>
-                    <div className="column right">
-                        {/* Right column content */}
-                    </div>
+                <div className="column left" onClick={handleLeftArrowClick}>
+                    <FaArrowLeft />
                 </div>
+                <div className="column middle">
+                    <ProgressBar currentStep={3} totalSteps={4} />
+                </div>
+                <div className="column right">
+                    {/* Right column content */}
+                </div>
+            </div>
             <div className="success-header">
                 You saved it, right?
             </div>
@@ -107,12 +115,12 @@ const SuccessPage: React.FC = () => {
 
                             return (
                                 <div key={colIndex} className={`word-button-placeholder col-${colIndex + 1}`}>
-                                    {shouldRenderButton && wordIndex < recoveryWords.length && (
+                                    {shouldRenderButton && wordIndex < shuffledWords.length && (
                                         <button
                                             className={`word-button ${selectedIndexes.includes(wordIndex) ? 'selected' : ''}`}
                                             onClick={() => handleButtonClick(wordIndex)}
                                         >
-                                            {recoveryWords[wordIndex]}
+                                            {shuffledWords[wordIndex]}
                                             {firstSelectedIndex === wordIndex && (
                                                 <span className="popup">First</span>
                                             )}

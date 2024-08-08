@@ -88,9 +88,10 @@
   background-color: black;
   font-weight: bold;
   cursor: pointer;
+  margin-top: 10px;
   margin-right: 10px;
   margin-bottom: 10px;
-  font-size: 40px;
+  font-size: 30px;
 }
 
 .middle {

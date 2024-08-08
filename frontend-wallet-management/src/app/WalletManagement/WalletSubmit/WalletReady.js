@@ -1,5 +1,6 @@
 import React from 'react';
 import './WalletReady.css';
+import { FaArrowLeft } from "react-icons/fa";
 
 function WalletReady() {
 
@@ -21,7 +22,7 @@ function WalletReady() {
         <div className="wallet-content">
           <div className="container">
             <div className="column left" onClick={handleLeftArrowClick}>
-              ←
+            <FaArrowLeft />
             </div>
             <div className="column middle">
               {/* Middle column content */}

@@ -1,11 +1,11 @@
-'use client'; // Add this line
+'use client';
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { FaArrowLeft } from "react-icons/fa";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash, faCopy } from '@fortawesome/free-solid-svg-icons';
 import './style.css'; // Ensure this path is correct
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import ProgressBar from '../WalletCreation/ProgressBar';
 
@@ -16,26 +16,20 @@ function Wallet2() {
   const [randomWords, setRandomWords] = useState('');
   const router = useRouter();
 
-  const wordList = [
-  "abandon", "balance", "cathedral", "diligent", "eclipse", "fidelity", "gather", "horizon",
-  "inspire", "jovial", "knight", "leverage", "modern", "navigate", "oracle", "pioneer",
-  "quasar", "resolve", "synergy", "tactile", "unison", "vanguard", "wavelength", "xenon", 
-  "yield", "zephyr", "apex", "brilliance", "catalyst", "dedication", "ethos", "fortitude", 
-  "genesis", "harmony", "innovation", "journey", "keystone", "luminary", "momentum", 
-  "nexus", "optimism", "precision", "quest", "resilience", "serenity", "trajectory", 
-  "unity", "valor", "wisdom", "zenith"
-];
-
   useEffect(() => {
     setIsClient(true);
-    generateRandomWords();
+    fetchRandomWords();
   }, []);
 
-  const generateRandomWords = () => {
-    const shuffled = wordList.sort(() => 0.5 - Math.random());
-    const selected = shuffled.slice(0, 12).join(' ');
-    setRandomWords(selected);
-    localStorage.setItem('recoveryWords', selected); // Store in localStorage
+  const fetchRandomWords = async () => {
+    try {
+      const response = await axios.get('http://127.0.0.1:8000/api/recovery-phrase/');
+      const words = response.data.phrase;
+      setRandomWords(words);
+      localStorage.setItem('recoveryWords', words); // Store in localStorage
+    } catch (error) {
+      console.error('Error fetching random words:', error);
+    }
   };
 
   const toggleVisibility = () => {
@@ -54,32 +48,33 @@ function Wallet2() {
     setIsCheckboxChecked(event.target.checked);
   };
 
-  const handleContinueClick = async () => {
+  const handleContinueClick = () => {
     if (isCheckboxChecked) {
-      const response = await axios.post('')
-      router.push('./WalletSecretCode/success'); // Navigate to the success page
+      // Send the recovery phrase to the next page using URL parameters
+      router.push(`http://localhost:3000/WalletManagement/WalletSecretCode/success?phrase=${encodeURIComponent(randomWords)}`);
     } else {
       alert('Please check the checkbox before continuing.');
     }
   };
 
   const handleLeftArrowClick = () => {
-    window.location.href = './WalletCreation';
-};
+    window.location.href = './WalletCreation/Account';
+  };
 
   return (
     <div className="wrapper">
       <div className="container">
-                    <div className="column left" onClick={handleLeftArrowClick}>
-                        ←
-                    </div>
-                    <div className="column middle">
-                        <ProgressBar currentStep={2} totalSteps={4} />
-                    </div>
-                    <div className="column right">
-                        {/* Right column content */}
-                    </div>
-                </div>
+        <div className="column left" onClick={handleLeftArrowClick}>
+          {/* <FontAwesomeIcon icon={faArrowLeft} /> */}
+          <FaArrowLeft />
+        </div>
+        <div className="column middle">
+          <ProgressBar currentStep={2} totalSteps={4} />
+        </div>
+        <div className="column right">
+          {/* Right column content */}
+        </div>
+      </div>
       <h1 className="header">Back up your wallet</h1>
       <p className="description">
         Save these 12 words to a password manager, or write down and store in a secure place.
