@@ -21,3 +21,8 @@ class WalletDataSerializer(serializers.ModelSerializer):
     class Meta:
         model = WalletData
         fields = ['wallet_id', 'password', 'recovery_phrases', 'created_at']
+
+# class RecoveryPhraseSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = WalletData
+#         fields = ['recovery_phrases']

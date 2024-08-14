@@ -24,13 +24,22 @@ const RecoveryPhraseForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
+            console.log(phrases);
+            
             const response = await axios.post('http://127.0.0.1:8000/api/check-recovery-phrase/', {
                 phrases,
             });
 
             if (response.data.success) {
-                // Redirect to the next page
-                window.location.href = '../CreatePassword/';
+                // Extract the wallet_id from the response
+                const { wallet_id } = response.data;
+                // Store wallet_id in sessionStorage and redirect to the next page
+                sessionStorage.setItem('wallet_id', wallet_id);
+                console.log(wallet_id);
+                setTimeout(() => {
+                    window.location.href = './UpdatePassword/';
+                }, 2000);
+                
             } else {
                 setErrorMessage('Password words are incorrect');
             }

@@ -14,8 +14,10 @@
 
 # urls.py
 from django.urls import path
-from .views import save_wallet_data
+from .views import save_wallet_data,check_recovery_phrase, update_password
 
 urlpatterns = [
     path('api/save-wallet-data/', save_wallet_data, name='save_wallet_data'),
+    path('api/check-recovery-phrase/', check_recovery_phrase, name='check_recovery_phrase'),
+    path('api/update-password/', update_password, name='update_password'),
 ]

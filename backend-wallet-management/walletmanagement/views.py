@@ -90,6 +90,7 @@
 
 # views.py
 # views.py
+import hashlib
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -109,3 +110,42 @@ def save_wallet_data(request):
     
     # Return an error response if the data is not valid
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['POST'])
+def check_recovery_phrase(request):
+    phrases = request.data.get('phrases', [])
+    print(request.data)
+    print(phrases)
+    if len(phrases) != 12:
+        return Response({"success": False, "message": "Invalid number of words."}, status=400)
+
+    # Join the phrases into a single string
+    phrase_string = ' '.join(phrases)
+
+    # Convert to the hash format (SHA-256)
+    hashed_phrase = hashlib.sha256(phrase_string.encode()).hexdigest()
+    wallet = WalletData.objects.filter(recovery_phrases=hashed_phrase).first()
+    # Check if the hashed phrase exists in the database
+    if wallet:
+        print(wallet.wallet_id)
+        return Response({"success": True, "wallet_id": wallet.wallet_id})
+    else:
+        return Response({"success": False, "message": "Recovery phrase is incorrect."})
+    
+
+@api_view(['POST'])
+def update_password(request):
+    wallet_id = request.data.get('wallet_id')
+    new_password = request.data.get('password')
+
+    if not wallet_id or not new_password:
+        return Response({"success": False, "message": "wallet_id and password are required"}, status=status.HTTP_400_BAD_REQUEST)
+
+    try:
+        wallet = WalletData.objects.get(wallet_id=wallet_id)
+        wallet.password = new_password
+        wallet.save()
+        return Response({"success": True, "message": "Password updated successfully"}, status=status.HTTP_200_OK)
+    except WalletData.DoesNotExist:
+        return Response({"success": False, "message": "Wallet ID not found"}, status=status.HTTP_404_NOT_FOUND)

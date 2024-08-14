@@ -39,12 +39,27 @@
 # models.py
 # models.py
 from django.db import models
+import hashlib
 
 class WalletData(models.Model):
     wallet_id = models.CharField(max_length=10, unique=True)
     password = models.CharField(max_length=128)
     recovery_phrases = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        db_table = 'crypto_wallet_table'
+
+    def save(self, *args, **kwargs):
+        # Hash password
+        self.password = hashlib.sha256(self.password.encode()).hexdigest()
+        
+        # Hash recovery phrases
+        self.recovery_phrases = hashlib.sha256(self.recovery_phrases.encode()).hexdigest()
+        
+        # Call the original save method
+        super(WalletData, self).save(*args, **kwargs)
+
 
     def __str__(self):
         return self.wallet_id
