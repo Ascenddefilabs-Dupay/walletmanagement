@@ -9,7 +9,7 @@ const AddAccount = () => {
       };
 
     const handleImport = () => {
-      window.location.href = '../WalletSecretCode';
+      window.location.href = './ImportPassphrase';
     };
 
   return (

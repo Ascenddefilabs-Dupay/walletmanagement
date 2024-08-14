@@ -13,7 +13,7 @@ function WalletReady() {
   };
 
   const handleLeftArrowClick = () => {
-    window.location.href = './CreatePassword';
+    window.location.href = './WalletSecretCode/success/';
   };
 
   return (
