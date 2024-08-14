@@ -131,9 +131,22 @@ function Wallet2() {
     }, []);
 
     const generateRandomWords = () => {
-        const words = Array.from({ length: 12 }, () => Math.random().toString(36).substring(2, 15)).join(' ');
+        const words = Array.from({ length: 12 }, () => generateRandomWord()).join(' ');
         setRandomWords(words);
         localStorage.setItem('recoveryWords', words); // Store in localStorage
+    };
+
+    const generateRandomWord = () => {
+        const length = Math.floor(Math.random() * 3) + 4; // Length between 4 and 6
+        let word = '';
+        for (let i = 0; i < length; i++) {
+            word += String.fromCharCode(Math.floor(Math.random() * 26) + 97); // Generate random lowercase letter
+        }
+        return capitalizeFirstLetter(word);
+    };
+
+    const capitalizeFirstLetter = (string) => {
+        return string.charAt(0).toUpperCase() + string.slice(1);
     };
 
     const toggleVisibility = () => {
