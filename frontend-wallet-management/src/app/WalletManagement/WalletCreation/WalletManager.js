@@ -8,11 +8,11 @@ import { FaArrowLeft } from "react-icons/fa";
 const WalletManager = () => {
 
   const handleCreateNewWallet = () => {
-    window.location.href = './WalletCreation/AddAccount';
+    window.location.href = './WalletCreation/CreateAccount';
   };
 
   const handleExistingWallet = () => {
-    window.location.href = './WalletCreation/Account';
+    window.location.href = './WalletCreation/AddAccount';
   };
 
   const handleLeftArrowClick = () => {

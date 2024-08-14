@@ -1,10 +1,10 @@
 import React from 'react';
-import Account from './Account'
+import AddAccount from './AddAccount';
 
 const addAccount = () => {
   return (
     <div className="App">
-      <Account />
+      <AddAccount />
     </div>
   );
 }
