@@ -40,6 +40,7 @@
 # models.py
 from django.db import models
 import hashlib
+from django.utils import timezone
 
 class WalletData(models.Model):
     wallet_id = models.CharField(max_length=10, unique=True)
@@ -55,7 +56,7 @@ class WalletData(models.Model):
         self.password = hashlib.sha256(self.password.encode()).hexdigest()
         
         # Hash recovery phrases
-        self.recovery_phrases = hashlib.sha256(self.recovery_phrases.encode()).hexdigest()
+        # self.recovery_phrases = hashlib.sha256(self.recovery_phrases.encode()).hexdigest()
         
         # Call the original save method
         super(WalletData, self).save(*args, **kwargs)
