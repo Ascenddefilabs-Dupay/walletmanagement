@@ -94,8 +94,10 @@ import hashlib
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from django.http import JsonResponse
 from .models import WalletData
 from .serializers import WalletDataSerializer
+from django.utils import timezone
 
 @api_view(['POST'])
 def save_wallet_data(request):
@@ -124,8 +126,8 @@ def check_recovery_phrase(request):
     phrase_string = ' '.join(phrases)
 
     # Convert to the hash format (SHA-256)
-    hashed_phrase = hashlib.sha256(phrase_string.encode()).hexdigest()
-    wallet = WalletData.objects.filter(recovery_phrases=hashed_phrase).first()
+    # hashed_phrase = hashlib.sha256(phrase_string.encode()).hexdigest()
+    wallet = WalletData.objects.filter(recovery_phrases=phrase_string).first()
     # Check if the hashed phrase exists in the database
     if wallet:
         print(wallet.wallet_id)
@@ -149,3 +151,9 @@ def update_password(request):
         return Response({"success": True, "message": "Password updated successfully"}, status=status.HTTP_200_OK)
     except WalletData.DoesNotExist:
         return Response({"success": False, "message": "Wallet ID not found"}, status=status.HTTP_404_NOT_FOUND)
+    
+
+def get_latest_wallet_id(request):
+    latest_wallet = WalletData.objects.latest('created_at')
+    wallet_id = latest_wallet.wallet_id if latest_wallet else None
+    return JsonResponse({'wallet_id': wallet_id})
