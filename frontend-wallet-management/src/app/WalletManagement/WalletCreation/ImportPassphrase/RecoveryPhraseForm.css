@@ -1,11 +1,12 @@
 /* RecoveryPhraseForm.css */
 .recovery-phrase-form {
     width: 428px;
-    height: 100vh;
+    height: auto;
+  min-height: 100vh;
     margin: auto;
     background-color: black;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
 }
@@ -125,7 +126,8 @@ button[type="button"]:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: auto;
+  min-height: 100vh;
     background-color: white;
     font-family: "Segoe UI", "Roboto", "Helvetica", "Arial", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; 
 

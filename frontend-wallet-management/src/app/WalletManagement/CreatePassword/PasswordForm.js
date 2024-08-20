@@ -241,7 +241,7 @@ const PasswordForm = () => {
             setMessage('Password saved :)');
             setMessageType('success');
             setTimeout(() => {
-                window.location.href = 'http://localhost:3000/WalletManagement/WalletSecretCode';
+                window.location.href = './WalletSecretCode';
             }, 2000);
         }
     };
