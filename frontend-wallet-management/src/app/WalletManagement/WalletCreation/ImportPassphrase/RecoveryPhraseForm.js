@@ -31,15 +31,12 @@ const RecoveryPhraseForm = () => {
             });
 
             if (response.data.success) {
-                // Extract the wallet_id from the response
                 const { wallet_id } = response.data;
-                // Store wallet_id in sessionStorage and redirect to the next page
                 sessionStorage.setItem('wallet_id', wallet_id);
                 console.log(wallet_id);
                 setTimeout(() => {
                     window.location.href = './UpdatePassword/';
                 }, 2000);
-                
             } else {
                 setErrorMessage('Password words are incorrect');
             }
@@ -64,7 +61,7 @@ const RecoveryPhraseForm = () => {
                                         type={showPhrases[index] ? 'text' : 'password'}
                                         value={phrase}
                                         onChange={(e) => handleChange(index, e.target.value)}
-                                        placeholder="Password"
+                                        placeholder={`Password ${index + 1}`}
                                     />
                                     <button
                                         type="button"

@@ -189,6 +189,7 @@ function Wallet2() {
     };
 
     return (
+        <div className="wrapper1">
         <div className="wrapper">
             <div className="container">
                 <div className="column left" onClick={handleLeftArrowClick}>
@@ -227,6 +228,7 @@ function Wallet2() {
                 </label>
             </div>
             <button className="continue-button" onClick={handleContinueClick}>Continue</button>
+        </div>
         </div>
     );
 }
