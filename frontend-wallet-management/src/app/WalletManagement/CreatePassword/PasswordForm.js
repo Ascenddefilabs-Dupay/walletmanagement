@@ -169,6 +169,8 @@ import ProgressBar from '../WalletCreation/ProgressBar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { FaArrowLeft } from "react-icons/fa";
+import axios from 'axios';
+
 
 const PasswordForm = () => {
     const [password, setPassword] = useState('');
@@ -182,15 +184,22 @@ const PasswordForm = () => {
     const [message, setMessage] = useState('');
     const [messageType, setMessageType] = useState('');
 
-    const generateWalletId = () => {
+    const generateWalletId = async  () => {
         const prefix = 'DUP';
-        const lastId = localStorage.getItem('last_wallet_id');
-        let newId;
-        if (lastId) {
-            const numberPart = parseInt(lastId.replace(prefix, ''), 10);
-            newId = `${prefix}${String(numberPart + 1).padStart(4, '0')}`;
-        } else {
-            newId = `${prefix}0001`;
+        try {
+            const response = await axios.get('http://127.0.0.1:8000/api/latest_wallet_id/');
+            const lastId = response.data.wallet_id;
+            let newId;
+            if (lastId) {
+                const numberPart = parseInt(lastId.replace(prefix, ''), 10);
+                newId = `${prefix}${String(numberPart + 1).padStart(4, '0')}`;
+            } else {
+                newId = `${prefix}0001`;
+            }
+            return newId;
+        } catch (error) {
+            console.error('Error fetching the latest wallet ID:', error);
+            return `${prefix}0001`;  // fallback
         }
         localStorage.setItem('last_wallet_id', newId);
         return newId;
@@ -219,10 +228,10 @@ const PasswordForm = () => {
         setPasswordMatch(password === value);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (passwordMatch && isChecked) {
-            const walletId = generateWalletId();
+            const walletId = await generateWalletId();
 
             // Store wallet_id and password in localStorage
             localStorage.setItem('wallet_id', walletId);
@@ -260,7 +269,7 @@ const PasswordForm = () => {
                         <FaArrowLeft />
                     </div>
                     <div className="column middle">
-                        <ProgressBar currentStep={4} totalSteps={4} />
+                        <ProgressBar currentStep={2} totalSteps={4} />
                     </div>
                     <div className="column right">
                         {/* Right column content */}
@@ -276,6 +285,7 @@ const PasswordForm = () => {
                                 type={showPassword ? 'text' : 'password'}
                                 value={password}
                                 onChange={handlePasswordChange}
+                                placeholder='Enter Password'
                             />
                             <button type="button" onClick={() => setShowPassword(!showPassword)}>
                                 <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} />
@@ -295,6 +305,7 @@ const PasswordForm = () => {
                                 type={showPassword ? 'text' : 'password'}
                                 value={verifyPassword}
                                 onChange={handleVerifyPasswordChange}
+                                placeholder='verify Password'
                                 id="password-input-field"
                             />
                             <button

@@ -1,31 +1,31 @@
 /* RecoveryPhraseForm.css */
 .recovery-phrase-form {
-    max-width: 428px;
+    width: 428px;
     height: 100vh;
     margin: auto;
     background-color: black;
     padding: 20px;
-    /* border-radius: 10px; */
+    border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
 }
 
 .recovery-phrase-form h2{
     margin-bottom: 20px;
-    font-size: 40px;
+    font-size: 30px;
     font-weight: bold;
     font-family: "Segoe UI", "Roboto", "Helvetica", "Arial", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; 
 
 }
 .recovery-phrase-form h3{
     margin-bottom: 20px;
-    font-size: 30px;
+    font-size: 20px;
     font-family: "Segoe UI", "Roboto", "Helvetica", "Arial", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; 
 
 }
 .recovery-phrase-form P {
     margin-bottom: 20px;
-    font-size: 20px;
+    font-size: 18px;
     font-family: "Segoe UI", "Roboto", "Helvetica", "Arial", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; 
 
 }
@@ -69,40 +69,47 @@
 }
 
 button[type="submit"] {
-    background-color: #4169e1;
-    color: white;
+    background-color: white;
+    color: black;
     padding: 10px 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 10rem;
     cursor: pointer;
-    margin: 10px;
+    margin-bottom: 15px;
+    font-size: 18px;
+    width: 90%;
     transition: all .6s ease;
 }
 
 button[type="submit"]:hover {
-    background-color: #365abd;
-    transform: scale(1.05);
+    background-color: green;
+    transform: scale(1.1);
 }
 
-.cancle{
+.cancel{
     background-color: white;
     padding: 5px;
     border: none;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 10rem;
+    width: 45%;
+    font-size: 18px;
     color: black;
-    transition: all .6s ease;
+    padding: 10px 20px;
+
+    transition: all .4s ease;
+    font-family: "Segoe UI", "Roboto", "Helvetica", "Arial", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
-.cancle:hover{
+.cancel:hover{
     /* color: white; */
-    background-color: whitesmoke;
-    transform: scale(1.05);
+    background-color: rgb(255, 0, 0);
+    transform: scale(1.1);
 }
 
 button[type="button"],
 button {
-    background-color: white;
+    background-color: rgba(245, 245, 245, 0.514);
     padding: 5px;
     border: none;
     cursor: pointer;
@@ -111,7 +118,7 @@ button {
 }
 
 button[type="button"]:hover {
-    background-color: #c0c0c0;
+    background-color: white;
 }
 
 .wallet-manager {
@@ -129,5 +136,6 @@ button[type="button"]:hover {
     align-items: left;
     border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: rgba(128, 128, 128, 0.771);
+    color: white;
+    background-color: rgb(128, 128, 128);
 }

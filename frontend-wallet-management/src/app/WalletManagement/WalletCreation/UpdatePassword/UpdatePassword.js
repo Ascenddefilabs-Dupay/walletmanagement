@@ -62,6 +62,7 @@ const PasswordForm = () => {
                 const response = await axios.post('http://127.0.0.1:8000/api/update-password/', { wallet_id: walletId, password });
                 setMessage('Password updated successfully :)');
                 setMessageType('success');
+                sessionStorage.removeItem('wallet_id');
                 setTimeout(() => {
                     window.location.href = 'http://localhost:3000/WalletManagement/WalletCreation';
                 }, 2000);
@@ -113,6 +114,7 @@ const PasswordForm = () => {
                                 type={showPassword ? 'text' : 'password'}
                                 value={password}
                                 onChange={handlePasswordChange}
+                                placeholder='New Password'
                             />
                             <button type="button" onClick={() => setShowPassword(!showPassword)}>
                                 <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} />
@@ -132,6 +134,7 @@ const PasswordForm = () => {
                                 type={showPassword ? 'text' : 'password'}
                                 value={verifyPassword}
                                 onChange={handleVerifyPasswordChange}
+                                placeholder='Verify Password'
                                 id="password-input-field"
                             />
                             <button
@@ -150,11 +153,12 @@ const PasswordForm = () => {
                             checked={isChecked}
                             onChange={() => setIsChecked(!isChecked)}
                         />
-                        <label className='cond'>
+                        <label className='conditions'>
                             I agree to the <a href="#terms" onClick={(e) => { e.preventDefault(); showTerms(); }}>terms</a> and <a href="#privacy-policy" onClick={(e) => { e.preventDefault(); showPrivacyPolicy(); }}>privacy policy</a>
                         </label>
                     </div>
-                    <button type="submit" disabled={!passwordMatch || !isChecked}>Next</button>
+                    <button type="submit"
+                    className='submit' disabled={!passwordMatch || !isChecked}>Next</button>
                 </form>
                 {message && (
                     <div className={`message ${messageType}`}>

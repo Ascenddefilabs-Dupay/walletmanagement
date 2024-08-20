@@ -195,7 +195,7 @@ function Wallet2() {
                     <FaArrowLeft />
                 </div>
                 <div className="column middle">
-                    <ProgressBar currentStep={2} totalSteps={4} />
+                    <ProgressBar currentStep={3} totalSteps={4} />
                 </div>
                 <div className="column right">
                     {/* Right column content */}

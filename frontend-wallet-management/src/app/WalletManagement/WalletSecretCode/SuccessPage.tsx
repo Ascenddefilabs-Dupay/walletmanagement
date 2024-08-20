@@ -243,6 +243,8 @@ const SuccessPage: React.FC = () => {
                     localStorage.removeItem('walletId');
                     localStorage.removeItem('password');
                     localStorage.removeItem('recoveryWords');
+                    localStorage.removeItem('last_wallet_id');
+
 
                     window.location.href = '../WalletSubmit';
                 } catch (error) {
@@ -262,7 +264,7 @@ const SuccessPage: React.FC = () => {
                     <FaArrowLeft />
                 </div>
                 <div className="column middle">
-                    <ProgressBar currentStep={3} totalSteps={4} />
+                    <ProgressBar currentStep={4} totalSteps={4} />
                 </div>
                 <div className="column right">
                     {/* Right column content */}

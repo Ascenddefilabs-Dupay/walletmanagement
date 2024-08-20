@@ -23,7 +23,7 @@ body {
       position: relative;
       background-color: black;
       padding: 20px;
-      /* border-radius: 10px; */
+      border-radius: 10px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       max-width: 428px;
       text-align: center;
@@ -33,20 +33,22 @@ body {
   /* Keep other styles as is */
   .header {
     color: white;
-    font-size: 24px;
-    font-weight: bold;
+    font-size: 30px;
     margin-top: 25px;
     margin-bottom: 15px;
     text-align: left;
+    font-family: "Segoe UI", "Roboto", "Helvetica", "Arial", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; 
+    font-weight: bold;
   }
   
   .description {
     color: white;
-    font-size: 16px;
+    font-size: 15px;
     line-height: 1.5;
     text-align: left;
     white-space: pre-line;
     margin-bottom: 20px;
+    font-family: "Segoe UI", "Roboto", "Helvetica", "Arial", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; 
   }
   
   .textbox-container {
@@ -78,6 +80,7 @@ body {
       margin-bottom: 5px; 
       text-align: left;
       color: #d3d3d3;;
+      font-family: "Segoe UI", "Roboto", "Helvetica", "Arial", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     }
     
     .icon-container {
@@ -93,9 +96,10 @@ body {
     }
   .description2 {
       color: white;
-      font-size: 16px;
+      font-size: 15px;
       text-align: left; 
       margin-top: 20px;
+      font-family: "Segoe UI", "Roboto", "Helvetica", "Arial", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     }
     
   .copy-icon {
@@ -110,6 +114,8 @@ body {
     
     .checkbox {
       margin-right: 10px;
+      font-size: 15px;
+      font-family: "Segoe UI", "Roboto", "Helvetica", "Arial", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     }
     .continue-button {
       background-color: white;
@@ -117,16 +123,21 @@ body {
       border: none;
       padding: 10px 20px;
       border-radius: 50px;
-      font-size: 16px;
+      font-size: 18px;
       cursor: pointer;
       margin-top: 20px;
       width: 100%;
+      font-weight: bold;
       max-width: 300px;
       box-sizing: border-box;
+      transition: all .4s ease;
+      font-family: "Segoe UI", "Roboto", "Helvetica", "Arial", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     }
     
     .continue-button:hover {
-      background-color: #e6e6e6; 
+      background-color: green; 
+
+      transform: scale(1.1);
     }
     
     .continue-button:disabled {
@@ -137,7 +148,7 @@ body {
       position: relative;
       background-color: black;
       padding: 20px;
-      /* border-radius: 10px; */
+      border-radius: 10px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       max-width: 428px;
       text-align: center;
@@ -162,19 +173,21 @@ body {
   
  
   .success-header {
-      font-size: 20px;
+      font-size: 30px;
       font-weight: bold;
       margin-top: 20px;
       margin-bottom: 8px;
       text-align: left;
+      font-family: "Segoe UI", "Roboto", "Helvetica", "Arial", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   }
   
  
   .success-paragraph {
-      font-size: 14px;
+      font-size: 15px;
       line-height: 1.5;
       margin-bottom: 20px;
       text-align: left;
+      font-family: "Segoe UI", "Roboto", "Helvetica", "Arial", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   }
   .word-buttons-container {
     display: flex;
@@ -206,14 +219,18 @@ body {
   border: none;
   border-radius: 15px; 
   cursor: pointer;
-  font-size: 12px; 
+  font-size: 15px; 
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
+  transition: all .4s ease;
+  font-family: "Segoe UI", "Roboto", "Helvetica", "Arial", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 .word-button:hover {
-  background-color: #29282d; 
+  background-color: white;
+  color: black; 
+  transform: scale(1.1);
 }
 .word-button.selected {
   background-color: white;
