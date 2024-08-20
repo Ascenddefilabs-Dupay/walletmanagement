@@ -16,7 +16,7 @@ const AddAccount = () => {
     <div className="wallet-manager">
     <div className="add-account-container">
             <div className="add-account-header">
-                <h1>Add Account</h1>
+                <h1>Create Account</h1>
             </div>
             <div className="add-account-body">
                 {/* <button className="add-account-button ledger">Set up Ledger</button> */}

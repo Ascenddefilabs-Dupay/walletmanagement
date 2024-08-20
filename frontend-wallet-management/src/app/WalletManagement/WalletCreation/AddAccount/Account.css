@@ -11,7 +11,7 @@
     width: 428px;
     /* max-width: 400px; */
     background-color: black;
-    /* border-radius: 10px; */
+    border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
     position: relative;
@@ -25,6 +25,7 @@
     font-size: 30px;
     color: white;
     font-weight: bold;
+    font-family: "Segoe UI", "Roboto", "Helvetica", "Arial", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   }
   
   .add-account-body {
@@ -45,15 +46,16 @@
     cursor: pointer;
     transition: all .6s ease;
     color: #333;
+    font-family: "Segoe UI", "Roboto", "Helvetica", "Arial", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   }
   
   .add-account-button:hover {
-    background-color: #e2e6ea;
-    transform: scale(1.05);
+    background-color: green;
+    transform: scale(1.1);
   }
   
   .add-account-button.ledger {
-    background-color: #e9ecef;
+    background-color: green;
     font-weight: bold;
   }
   
@@ -64,6 +66,7 @@
     text-align: center;
     width: 100%;
     padding: 10px;
+    font-family: "Segoe UI", "Roboto", "Helvetica", "Arial", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   }
   
   .close-button {
