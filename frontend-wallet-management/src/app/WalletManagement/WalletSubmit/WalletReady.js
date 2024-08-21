@@ -32,7 +32,7 @@ function WalletReady() {
             </div>
           </div>
           <div className="checkmark">✔️</div>
-          <h1 className='header'>Your wallet is ready</h1>
+          <h1 className='header'>Your wallet is Ready</h1>
           <p className='para'>Join and claim your<br /> free username.</p>
           <button className="claim-button" onClick={handleClaim}>Claim for free</button>
           <button className="later-button" onClick={handleLater}>I'll do it later</button>

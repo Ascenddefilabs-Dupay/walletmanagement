@@ -24,7 +24,7 @@
   height: auto;
   min-height: 100vh;
   font-weight: bold;
-  font-family: "Segoe UI", "Roboto", "Helvetica", "Arial", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; 
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .wallet-icon{
@@ -45,7 +45,7 @@
   cursor: pointer;
   width:auto;
   transition: all .4s ease;
-  font-family: "Segoe UI", "Roboto", "Helvetica", "Arial", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; 
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .create-wallet-button:hover{
@@ -61,16 +61,16 @@
   transition: all .4s ease;
   cursor: pointer;
   background-color: black;
-  font-family: "Segoe UI", "Roboto", "Helvetica", "Arial", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; 
-}
+  font-family: Arial, Helvetica, sans-serif;
+  }
 
 .existing-wallet-button:hover{
   transform: scale(1.1);
 }
 
 .create-wallet-button {
-  background-color: white;
-  color: black;
+  background: linear-gradient(90deg, #007bff9f, #800080);
+  color: white;
 }
 
 .existing-wallet-button {
@@ -107,7 +107,7 @@
   margin-top: 10px;
   margin-right: 10px;
   margin-bottom: 10px;
-  font-size: 30px;
+  font-size: 20px;
 }
 
 .middle {
