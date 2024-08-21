@@ -5,11 +5,13 @@ import { FaArrowLeft } from "react-icons/fa";
 function WalletReady() {
 
   const handleClaim = () => {
-    window.location.href = '/claim';
+    // window.location.href = '/claim';
+    window.location.href = 'http://localhost:3003/Crypto_Wallet/Dashboard';
   };
 
   const handleLater = () => {
-    window.location.href = '/later';
+    // window.location.href = '/later';
+    window.location.href = 'http://localhost:3003/Crypto_Wallet/Dashboard';
   };
 
   const handleLeftArrowClick = () => {

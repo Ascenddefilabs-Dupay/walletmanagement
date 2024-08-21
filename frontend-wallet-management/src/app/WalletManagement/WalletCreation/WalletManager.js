@@ -17,7 +17,7 @@ const WalletManager = () => {
 
   const handleLeftArrowClick = () => {
     window.location.href = '/create-new-wallet';
-  };
+  };  
 
   return (
     <div className="wallet-manager">
@@ -36,7 +36,7 @@ const WalletManager = () => {
         <div className="wallet-icon">
           <img src='/wallet-image1.jpg' alt="DeFi Icon" />
         </div><br />
-        <h1>Manage your<br /> DeFi</h1>
+        <h1 className="header1">Manage your DeFi</h1>
         <button onClick={handleCreateNewWallet} className="create-wallet-button">
           Create new wallet
         </button>

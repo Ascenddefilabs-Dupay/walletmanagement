@@ -64,7 +64,7 @@ const PasswordForm = () => {
                 setMessageType('success');
                 sessionStorage.removeItem('wallet_id');
                 setTimeout(() => {
-                    window.location.href = 'http://localhost:3000/WalletManagement/WalletCreation';
+                    window.location.href = 'http://localhost:3003/Crypto_Wallet/Dashboard';
                 }, 2000);
             } catch (error) {
                 setMessage('Error updating password!');
