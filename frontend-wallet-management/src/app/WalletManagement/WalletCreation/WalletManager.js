@@ -34,8 +34,8 @@ const WalletManager = () => {
           </div>
         </div>
         <div className="wallet-icon">
-          <img src='/wallet-image1.jpg' alt="DeFi Icon" />
-        </div><br />
+          <img src='/Dupay-Black.png' alt="DeFi Icon" />
+        </div>
         <h1 className="header1">Manage your DeFi</h1>
         <button onClick={handleCreateNewWallet} className="create-wallet-button">
           Create new wallet
