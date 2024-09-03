@@ -20,7 +20,7 @@ from .models import WalletData
 class WalletDataSerializer(serializers.ModelSerializer):
     class Meta:
         model = WalletData
-        fields = ['wallet_id', 'password', 'recovery_phrases', 'created_at']
+        fields = ['wallet_id', 'password', 'recovery_phrases', 'created_at', 'user_id']
 
 # class RecoveryPhraseSerializer(serializers.ModelSerializer):
 #     class Meta:
