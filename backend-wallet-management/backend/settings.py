@@ -26,6 +26,7 @@ SECRET_KEY = 'django-insecure-o3aa37xv#i4nslh2igqg%ynlfh&858ofhl_n@y+gghaf4r=ftl
 DEBUG = True
 
 ALLOWED_HOSTS = ['walletmanagement-rcfpsxcera-uc.a.run.app']
+# ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -79,10 +80,10 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django_cockroachdb',
-        'NAME': 'Dupay',
-        'USER': 'Gtpl',
-        'PASSWORD': 'mu6-f6rSv9t_oCLSh6iFLg',
-        'HOST': 'meteor-dunnart-5620.7s5.aws-ap-south-1.cockroachlabs.cloud',
+        'NAME': 'dupay',
+        'USER': 'dupay',
+        'PASSWORD': 'lPVRIuSyVCJqfmghd7ckBw',
+        'HOST': 'chill-dibbler-5989.7s5.aws-ap-south-1.cockroachlabs.cloud',
         'PORT': '26257',
         'sslmode': 'disable'
     }
