@@ -48,6 +48,7 @@ class WalletData(models.Model):
     recovery_phrases = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     user_id = models.CharField(max_length=10, default='null')
+    creation_state = models.CharField(max_length=10, default='null')
 
     class Meta:
         db_table = 'crypto_wallet_table'
