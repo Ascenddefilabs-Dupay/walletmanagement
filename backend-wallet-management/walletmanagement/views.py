@@ -107,7 +107,11 @@ def save_wallet_data(request):
 
     # Validate and save the data if valid
     if serializer.is_valid():
-        serializer.save()
+        wallet_data = serializer.save()
+
+        # Assign 'created' status to the wallet's creation state
+        wallet_data.creation_state = 'created'
+        wallet_data.save()
         return Response({'message': 'Wallet data saved successfully'}, status=status.HTTP_201_CREATED)
     
     # Return an error response if the data is not valid
