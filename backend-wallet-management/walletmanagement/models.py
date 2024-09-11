@@ -1,43 +1,3 @@
-# # from django.db import models
-# # from django.contrib.auth.hashers import make_password
-
-# # class UserPassword(models.Model):
-# #     password = models.CharField(max_length=128)
-
-# #     def save(self, *args, **kwargs):
-# #         # self.password = make_password(self.password)
-# #         super().save(*args, **kwargs)
-
-# # class RecoveryPhrase(models.Model):
-# #     phrase = models.TextField()
-# #     created_at = models.DateTimeField(auto_now_add=True)
-
-# from django.db import models
-# from django.utils import timezone
-
-# class CryptoWallet(models.Model):
-#     wallet_id = models.CharField(max_length=8, unique=True)
-#     phrase = models.TextField()  # Correct field name
-#     password = models.CharField(max_length=255)
-#     created_at = models.DateTimeField(default=timezone.now)
-#     updated_at = models.DateTimeField(auto_now=True)
-
-#     def save(self, *args, **kwargs):
-#         if not self.wallet_id:
-#             last_wallet = CryptoWallet.objects.all().order_by('wallet_id').last()
-#             if last_wallet:
-#                 last_id = int(last_wallet.wallet_id[3:])
-#                 self.wallet_id = f"DUP{last_id + 1:04d}"
-#             else:
-#                 self.wallet_id = "DUP0001"
-#         super(CryptoWallet, self).save(*args, **kwargs)
-
-#     def __str__(self):
-#         return self.wallet_id
-
-# models.py
-# models.py
-# models.py
 from django.db import models
 import hashlib
 from django.utils import timezone
@@ -67,4 +27,27 @@ class WalletData(models.Model):
     def __str__(self):
         return self.wallet_id
 
+class CustomUser(models.Model):
+    user_id = models.CharField(max_length=8, primary_key=True)
+    user_email = models.EmailField(unique=True)
+    user_first_name = models.CharField(max_length=30)
+    user_middle_name = models.CharField(max_length=30, blank=True)
+    user_last_name = models.CharField(max_length=30)
+    user_dob = models.DateField()
+    user_phone_number = models.BigIntegerField()
+    user_country = models.CharField(max_length=50)
+    user_city = models.CharField(max_length=50)
+    user_address_line_1 = models.CharField(max_length=255)  
+    user_address_line_2 = models.CharField(max_length=255, blank=True) 
+    user_pin_code = models.BigIntegerField()
+    user_state = models.CharField(max_length=50)  
+    user_profile_photo = models.CharField(max_length=255, blank=True, null=True)
+    user_password = models.CharField(max_length=255)
+    user_type = models.CharField(max_length=50)
+    user_old_password = models.CharField(max_length=128, blank=True, null=True)
+    last_login = models.DateTimeField(default=timezone.now, blank=True, null=True)
+    registration_status = models.CharField(max_length=10, default='False')
 
+    class Meta:
+        db_table = 'users'
+        managed= False
