@@ -4,7 +4,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.http import JsonResponse
 from .models import WalletData, CustomUser
-from .serializers import WalletDataSerializer
+from .serializers import WalletDataSerializer,CustomUserSerializer
 from django.utils import timezone
 
 @api_view(['POST'])
@@ -81,3 +81,13 @@ def get_latest_wallet_id(request):
     latest_wallet = WalletData.objects.latest('created_at')
     wallet_id = latest_wallet.wallet_id if latest_wallet else None
     return JsonResponse({'wallet_id': wallet_id})
+
+@api_view(['GET'])
+def get_user_data(request, user_id):
+    try:
+        # Query the CustomUser model based on user_id
+        user = CustomUser.objects.get(user_id=user_id)
+        serializer = CustomUserSerializer(user)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    except CustomUser.DoesNotExist:
+        return Response({"message": "User not found"}, status=status.HTTP_404_NOT_FOUND)
