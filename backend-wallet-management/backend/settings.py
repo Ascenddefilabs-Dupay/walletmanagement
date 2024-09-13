@@ -25,8 +25,10 @@ SECRET_KEY = 'django-insecure-o3aa37xv#i4nslh2igqg%ynlfh&858ofhl_n@y+gghaf4r=ftl
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['walletmanagement-rcfpsxcera-uc.a.run.app']
+
+# ALLOWED_HOSTS = ['walletmanagement-rcfpsxcera-uc.a.run.app']
 # ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['walletmanagement-ind-255574993735.asia-south1.run.app']
 
 
 # Application definition
