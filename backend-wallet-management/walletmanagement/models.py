@@ -1,14 +1,17 @@
 from django.db import models
 import hashlib
 from django.utils import timezone
+from decimal import Decimal
 
 class WalletData(models.Model):
     wallet_id = models.CharField(max_length=10, unique=True)
-    password = models.CharField(max_length=128)
-    recovery_phrases = models.TextField()
+    password = models.CharField(max_length=128, default='null')
+    recovery_phrases = models.TextField(default= 'null')
     created_at = models.DateTimeField(auto_now_add=True)
     user_id = models.CharField(max_length=10, default='null')
     creation_state = models.CharField(max_length=10, default='null')
+    sui_address = models.CharField(max_length=255, default='null')
+    balance = models.CharField(max_length=20, default='null')
 
     class Meta:
         db_table = 'crypto_wallet_table'
@@ -51,3 +54,34 @@ class CustomUser(models.Model):
     class Meta:
         db_table = 'users'
         managed= False
+
+# class CryptoWallet(models.Model):
+#     wallet_id = models.CharField(max_length=10, unique=True, blank=True)
+#     sui_address = models.CharField(max_length=255)
+#     balance = models.DecimalField(max_digits=20, decimal_places=2)
+
+#     class Meta:
+#         db_table = "crypto_wallet_table"
+
+#     def generate_wallet_id(self):
+#         # Fetch the last record and check its custom_id
+#         last_account = CryptoWallet.objects.order_by('id').last()
+
+#         if not last_account:
+#             # No previous account, starting the sequence
+#             return 'DUP0001'
+        
+#         # Extract number from the last custom_id
+#         last_id = last_account.wallet_id
+#         id_number = int(last_id.replace('DUP', '')) + 1
+
+#         # Return the new custom_id, padded with zeros
+#         return f'DUP{id_number:04d}'
+
+#     def save(self, *args, **kwargs):
+#         if not self.wallet_id:
+#             self.wallet_id = self.generate_wallet_id()
+#         super(CryptoWallet, self).save(*args, **kwargs)
+
+#     def __str__(self):
+#         return self.wallet_id

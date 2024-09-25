@@ -27,8 +27,8 @@ DEBUG = True
 
 
 # ALLOWED_HOSTS = ['walletmanagement-rcfpsxcera-uc.a.run.app']
-# ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['walletmanagement-ind-255574993735.asia-south1.run.app']
+ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = ['walletmanagement-ind-255574993735.asia-south1.run.app']
 
 
 # Application definition
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'walletmanagement',
+    'ZkLogin',
     'rest_framework',    
 ]
 
