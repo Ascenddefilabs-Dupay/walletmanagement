@@ -11,7 +11,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-
+import environ
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -27,10 +28,16 @@ DEBUG = True
 
 
 # ALLOWED_HOSTS = ['walletmanagement-rcfpsxcera-uc.a.run.app']
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 #ALLOWED_HOSTS = ['walletmanagement-ind-255574993735.asia-south1.run.app']
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    'https://dupay.biz',
+]
 
-
+env = environ.Env() 
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 # Application definition
 
 INSTALLED_APPS = [
